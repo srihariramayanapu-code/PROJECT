@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login - Student Management System</title>
+
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eff6ff, #eef2ff);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 15px 40px rgba(30, 58, 138, 0.12);
+}
+
+/* Logo */
+
+.login-logo {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.login-title {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 32px;
+    font-size: 14px;
+}
+
+/* Form */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #334155;
+    font-size: 14px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+input {
+    width: 100%;
+    padding: 13px 14px 13px 40px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    background: #f8fafc;
+    color: #1e293b;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input:hover {
+    border-color: #94a3b8;
+}
+
+input:focus {
+    background: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+/* Password eye */
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.password-toggle:hover {
+    color: #2563eb;
+}
+#password {
+    padding-right: 50px;
+}
+
+/* Login button */
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+.login-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+/* Messages */
+
+#loginMessage {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#loginMessage.success {
+    display: block !important;
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+#loginMessage.error {
+    display: block !important;
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+/* Footer */
+
+.login-footer {
+    text-align: center;
+    margin-top: 24px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .login-container {
+        width: 100%;
+    }
+
+    .login-card {
+        padding: 30px 22px;
+        border-radius: 15px;
+    }
+
+    .login-logo {
+        width: 58px;
+        height: 58px;
+        font-size: 24px;
+    }
+
+    .login-title {
+        font-size: 24px;
+    }
+
+    .login-subtitle {
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+
+    .login-info {
+        font-size: 13px !important;
+    }
+
+    input {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .login-btn {
+        padding: 13px;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+<div class="login-card">
+
+    <div class="login-logo">
+        🎓
+    </div>
+
+    <h1 class="login-title">
+        Admin Login
+    </h1>
+
+            <p class="login-subtitle">
+                Sign in to manage student records
+            </p>
+            <div class="login-info">
+                🔒 Authorized administrators only
+            </div>
+
+            <div style="height: 20px;"></div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="username">
+                        Username
+                    </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">👤</span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Enter username"
+                                required
+                            >
+
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        Password
+                    </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">🔑</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword()"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                    id="loginBtn"
+                >
+                    Login
+                </button>
+
+                <div id="loginMessage"></div>
+
+            </form>
+            <div class="login-footer">
+                Secure Admin Access
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const loginForm = document.getElementById("loginForm");
+        const loginBtn = document.getElementById("loginBtn");
+        const loginMessage = document.getElementById("loginMessage");
+
+        loginForm.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            const username =
+                document.getElementById("username").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            loginMessage.style.display = "none";
+            loginMessage.className = "";
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = "Logging in...";
+
+            try {
+
+                const response = await fetch(
+                    "http://localhost:8080/admin/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            username: username,
+                            password: password
+                        })
+                    }
+                );
+
+                const message = await response.text();
+
+                if (response.ok) {
+
+                    loginMessage.textContent = message;
+                    loginMessage.className = "success";
+
+                    sessionStorage.setItem("adminLoggedIn", "true");
+                    sessionStorage.setItem("adminUsername", username);
+
+                    setTimeout(function () {
+                        window.location.href = "index.html";
+                    }, 800);
+
+                } else {
+
+                    loginMessage.textContent =
+                        "Invalid username or password.";
+
+                    loginMessage.className = "error";
+
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = "Login";
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                loginMessage.textContent =
+                    "Unable to connect to the backend.";
+
+                loginMessage.className = "error";
+
+                loginBtn.disabled = false;
+                loginBtn.textContent = "Login";
+            }
+
+        });
+
+        function togglePassword() {
+
+    const passwordInput = document.getElementById("password");
+    const toggleButton = document.querySelector(".password-toggle");
+
+    if (passwordInput.type === "password") {
+
+        passwordInput.type = "text";
+        toggleButton.textContent = "🙈";
+
+    } else {
+
+        passwordInput.type = "password";
+        toggleButton.textContent = "👁";
+
+    }
+}
+
+    </script>
+
+</body>
+
+</html>
